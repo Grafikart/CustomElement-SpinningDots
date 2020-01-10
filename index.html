@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spinning Dots Loader</title>
+  <script src="index.js" type="module" defer></script>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: sans-serif;
+      font-size: 14px;
+      margin: 0;
+      padding: 30px 15px;
+      color: #718096;
+      background-color: #edf2f7;
+    }
+    h1 {
+      font-size: 2rem;
+      color: #000;
+      font-weight: bold;
+    }
+    h2 {
+      font-size: 1.125rem;
+      letter-spacing: .025em;
+      color: #1a202c;
+    }
+    .btn {
+      text-decoration: none;
+      color: #fff;
+      background-color: rgba(108, 117, 125, 0.65);
+      border-color: rgba(108, 117, 125, 0.65);
+      display: inline-flex;
+      align-items: center;
+      font-weight: 400;
+      text-align: center;
+      white-space: nowrap;
+      vertical-align: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      padding: .375rem .75rem;
+      font-size: 1rem;
+      line-height: 1.5;
+      border-radius: .25rem;
+    }
+    .btn spinning-dots {
+      width: 20px;
+      vertical-align: middle;
+      margin-left: .5rem;
+    }
+    .demo {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .container {
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .container > * + * {
+      margin-top: 3rem;
+    }
+    .demo > *:first-child {
+      width: 65%;
+    }
+    .demo pre {
+      background: #f2f7fc;
+      border: 1px solid #cbd5e0;
+      padding: 10px 5px;
+      width: 100%;
+      overflow: hidden;
+      font-family: monospace;
+    }
+    @media only screen and (max-width: 860px) {
+      .demo {
+        display: block;
+      }
+      .demo > *:first-child {
+        width: 100%;
+      }
+    }
+  </style>
+
+</head>
+<body>
+<div class="container">
+  <h1><strong>Spinning Loaders</strong> with dots !</h1>
+  <div class="demo">
+    <div>
+      <h2>🍦 Vanilla</h2>
+      <pre>&lt;spinning-dots /&gt;</pre>
+    </div>
+    <spinning-dots></spinning-dots>
+  </div>
+
+  <div class="demo">
+    <div>
+      <h2>Inside a button</h2>
+      <pre>&lt;a href=&quot;#&quot; class=&quot;btn&quot;&gt;
+A button
+&lt;spinning-dots style="width: 20px;"/&gt;
+&lt;/a&gt;</pre>
+    </div>
+    <div>
+      <a href="#" class="btn">
+        <span>A button</span>
+        <spinning-dots/>
+      </a>
+    </div>
+  </div>
+
+  <div class="demo">
+    <div>
+      <h2>Affected by style</h2>
+      <pre>&lt;spinning-dots style="
+  width:100px;
+  stroke-width:20px;
+  color: #535FF6;" /&gt;</pre>
+    </div>
+    <div>
+      <spinning-dots style="width:100px; stroke-width:20px; color: #535FF6;"></spinning-dots>
+    </div>
+  </div>
+
+  <div class="demo">
+    <div>
+      <h2>Less or more dots ?</h2>
+      <pre>&lt;spinning-dots dots="4" /&gt;</pre>
+    </div>
+    <div>
+      <spinning-dots dots="4"></spinning-dots>
+    </div>
+  </div>
+</div>
+<div id="log"></div>
+</body>
+</html>

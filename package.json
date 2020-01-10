@@ -1,0 +1,30 @@
+{
+  "name": "@grafikart/spinning-dots-element",
+  "version": "0.0.1",
+  "description": "Customized built-in element for a spinning loader with dots",
+  "main": "index.js",
+  "module": "index.js",
+  "scripts": {
+    "lint": "prettier --write index.js",
+    "dev": "browser-sync start -s --no-notify --no-open --no-ui -f ./ --ignore node_modules"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Grafikart/CustomElement-SpinningDots.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Grafikart/CustomElement-SpinningDots/issues"
+  },
+  "homepage": "https://github.com/Grafikart/CustomElement-SpinningDots",
+  "files": [
+    "/index.js"
+  ],
+  "keywords": [],
+  "author": "Jonathan Boyer <contact@grafikart.fr>",
+  "license": "MIT",
+  "devDependencies": {
+    "browser-sync": "^2.26.7",
+    "prettier": "^1.19.1"
+  },
+  "dependencies": {}
+}
