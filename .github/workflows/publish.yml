@@ -3,6 +3,7 @@ name: Publish
 on:
   push:
     tags:
+      - 0.*
       - 1.*
 
 jobs:

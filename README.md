@@ -1,10 +1,8 @@
 # Customized built-in elements `<spinning-dots>`
 
 [![npm](https://img.shields.io/npm/v/@grafikart/spinning-dots-element.svg)](http://npm.im/@grafikart/spinning-dots-element)
-[![Build Status](https://travis-ci.org/Grafikart/CustomElement-DropFiles.svg?branch=master)](https://travis-ci.org/Grafikart/CustomElement-DropFiles)
-[![Build Status](https://github.com/Grafikart/CustomElement-DropFiles/workflows/Test/badge.svg)](https://github.com/Grafikart/CustomElement-DropFiles/actions)
 
-The goal of this module is to have a reusable component to display a spinning loader. [Live demo](https://codesandbox.io/s/customelement-dropfiles-demo-9iudwlate-night-9iudw?fontsize=14)
+The goal of this module is to have a reusable component to display a spinning loader. [Live demo](https://grafikart.github.io/CustomElement-SpinningDots/)
 
 ## Usage
 
@@ -61,6 +59,6 @@ This custom element is affected by these styles
 
 ## Changelog
 
-**1.0.0**
+**0.0.1**
 
-- First release
+- Initial release

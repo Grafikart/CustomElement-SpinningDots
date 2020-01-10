@@ -140,6 +140,14 @@ class SpinningDots extends HTMLElement {
   }
 }
 
-customElements.define('spinning-dots', SpinningDots)
+try {
+  customElements.define('spinning-dots', SpinningDots)
+} catch (e) {
+  if (e instanceof DOMException) {
+    console.error('DOMException : ' + e.message)
+  } else {
+    throw e
+  }
+}
 
 export default SpinningDots
