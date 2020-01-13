@@ -2,15 +2,14 @@ class SpinningDots extends HTMLElement {
   constructor() {
     super()
     const styles = window.getComputedStyle(this)
-    const width = this.intFromPx(styles.width, 68) || 68
-    const strokeWidth = this.intFromPx(styles.strokeWidth, Math.round(0.15 * width), 1)
+    const width = this.intFromPx(styles.width, 28)
+    const strokeWidth = this.intFromPx(styles.strokeWidth, (4 / 28) * width, 1)
     const circles = this.intFromPx(this.getAttribute('dots'), 8)
     const root = this.attachShadow({ mode: 'open' })
     root.innerHTML = `<div>
-    ${this.buildStyles(width, 8, strokeWidth)}
-    ${this.buildCircles(width, circles, 0.4 * strokeWidth)}
-    ${this.buildCircle(width, strokeWidth)}
-    ${this.buildFilter(strokeWidth)}
+    ${this.buildStyles(width, circles, strokeWidth)}
+    ${this.buildCircles(width, circles, strokeWidth / 2)}
+    ${this.buildTrail(width, strokeWidth)}
     </div>`
   }
 
@@ -39,29 +38,11 @@ class SpinningDots extends HTMLElement {
    * @param {number} stroke stroke width
    * @return {string}
    */
-  buildCircle(w, stroke) {
+  buildTrail(w, stroke) {
     return `<svg class="halo" width="${w}" height="${w}" viewBox="0 0 ${w} ${w}" fill="none" xmlns="http://www.w3.org/2000/svg">
 <circle cx="${w / 2}" cy="${w / 2}" r="${w / 2 -
       stroke / 2}" stroke-width="${stroke}" stroke-linecap="round" stroke="currentColor"/>
 </svg>`
-  }
-
-  /**
-   * Builds the gooey filter
-   * @param {number} stroke stroke width
-   * @return {string}
-   */
-  buildFilter(stroke) {
-    return `<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
-        <defs>
-          <filter id="goo">
-            <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur" />
-            <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 ${stroke} -${stroke /
-      2}" result="goo" />
-            <feBlend in="SourceGraphic" in2="goo" />
-          </filter>
-        </defs>
-      </svg>`
   }
 
   /**
@@ -82,7 +63,6 @@ class SpinningDots extends HTMLElement {
         position: relative;
         width: ${w}px;
         height: ${w}px;
-        filter:url('#goo');
       }
       svg {
         position: absolute;
@@ -110,9 +90,7 @@ class SpinningDots extends HTMLElement {
       }
       @keyframes trail {
         0% { stroke-dashoffset: ${offset + offset / n}; }
-        30% { stroke-dashoffset: ${offset + (2 * offset) / n}; }
-        50% { stroke-dashoffset: ${offset + ((n / 2.5) * offset) / n}; }
-        70% { stroke-dashoffset: ${offset + (2 * offset) / n}; }
+        50% { stroke-dashoffset: ${offset + (2.5 * offset) / n}; }
         100% { stroke-dashoffset: ${offset + offset / n}; }
       }
       @keyframes fadeIn {
