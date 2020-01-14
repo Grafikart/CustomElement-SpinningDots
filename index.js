@@ -17,17 +17,17 @@ class SpinningDots extends HTMLElement {
    * Builds a SVG with n circles equally spaced around a circle
    * @param {number} w canvas width
    * @param {number} n circles count
-   * @param {number} cr circles radius
+   * @param {number} r circles radius
    * @return {string}
    */
-  buildCircles(w, n, cr) {
-    const r = (w - cr * 2) / 2
+  buildCircles(w, n, r) {
+    const circleRadius = (w / 2) - r
     let dom = `<svg class="circles" width="${w}" height="${w}" viewBox="0 0 ${w} ${w}" fill="none" xmlns="http://www.w3.org/2000/svg">`
     for (let i = 0; i < n; i++) {
       const a = (Math.PI / (n / 2)) * i
-      const x = r * Math.sin(a) + r
-      const y = r * Math.cos(a) + r
-      dom += `<rect x="${x}" y="${y}" width="${cr * 2}" height="${cr * 2}" rx="${cr}" fill="currentColor"/>`
+      const x = circleRadius * Math.sin(a) + w / 2
+      const y = circleRadius * Math.cos(a) + w / 2
+      dom += `<circle cx="${x}" cy="${y}" r="${r}" fill="currentColor"/>`
     }
     return dom + `</svg>`
   }
