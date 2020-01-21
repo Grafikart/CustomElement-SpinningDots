@@ -1,6 +1,6 @@
 {
   "name": "@grafikart/spinning-dots-element",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Customized built-in element for a spinning loader with dots",
   "main": "index.js",
   "module": "index.js",

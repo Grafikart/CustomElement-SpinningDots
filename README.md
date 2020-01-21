@@ -59,6 +59,14 @@ This custom element is affected by these styles
 
 ## Changelog
 
+**0.0.3**
+
+- Make library usable using `new SpinningDots()`
+
+**0.0.2**
+
+- Better default size
+
 **0.0.1**
 
 - Initial release

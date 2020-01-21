@@ -1,16 +1,23 @@
 class SpinningDots extends HTMLElement {
   constructor() {
     super()
+    this.root = this.attachShadow({ mode: 'open' })
+  }
+
+  connectedCallback() {
     const styles = window.getComputedStyle(this)
     const width = this.intFromPx(styles.width, 28)
     const strokeWidth = this.intFromPx(styles.strokeWidth, (4 / 28) * width, 1)
     const circles = this.intFromPx(this.getAttribute('dots'), 8)
-    const root = this.attachShadow({ mode: 'open' })
-    root.innerHTML = `<div>
+    this.root.innerHTML = `<div>
     ${this.buildStyles(width, circles, strokeWidth)}
     ${this.buildCircles(width, circles, strokeWidth / 2)}
     ${this.buildTrail(width, strokeWidth)}
     </div>`
+  }
+
+  disconnectedCallback() {
+    this.root.innerHTML = ''
   }
 
   /**
@@ -21,7 +28,7 @@ class SpinningDots extends HTMLElement {
    * @return {string}
    */
   buildCircles(w, n, r) {
-    const circleRadius = (w / 2) - r
+    const circleRadius = w / 2 - r
     let dom = `<svg class="circles" width="${w}" height="${w}" viewBox="0 0 ${w} ${w}" fill="none" xmlns="http://www.w3.org/2000/svg">`
     for (let i = 0; i < n; i++) {
       const a = (Math.PI / (n / 2)) * i
