@@ -1,4 +1,4 @@
-class SpinningDots extends HTMLElement {
+export default class SpinningDots extends HTMLElement {
   constructor() {
     super()
     this.root = this.attachShadow({ mode: 'open' })
@@ -124,15 +124,3 @@ class SpinningDots extends HTMLElement {
     return initial
   }
 }
-
-try {
-  customElements.define('spinning-dots', SpinningDots)
-} catch (e) {
-  if (e instanceof DOMException) {
-    console.error('DOMException : ' + e.message)
-  } else {
-    throw e
-  }
-}
-
-export default SpinningDots

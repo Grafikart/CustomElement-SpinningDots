@@ -19,7 +19,8 @@ yarn add @grafikart/spinning-dots-element
 Then import it in your script
 
 ```js
-import '@grafikart/spinning-dots-element'
+import SpinningDots from '@grafikart/spinning-dots-element'
+customElements.define('spinning-dots', SpinningDots)
 ```
 
 ### With unpkg.com
@@ -31,7 +32,7 @@ import '@grafikart/spinning-dots-element'
 Then use the custom element in your html using `<spinning-dots>`.
 
 ```html
-<-- This will create a loader with a 68px width  -->
+<-- This will create a loader with a 68px width -->
 <spinning-dots></spinning-dots>
 
 <-- Everything scales according to the width -->
@@ -43,21 +44,25 @@ Then use the custom element in your html using `<spinning-dots>`.
 
 ### Attributes
 
-| Attribute | Type     | Description                                          |
-|-----------|----------|------------------------------------------------------|
-| `dots`    | `number` | The number of dots to display                        |
+| Attribute | Type     | Description                   |
+| --------- | -------- | ----------------------------- |
+| `dots`    | `number` | The number of dots to display |
 
 ### CSS Styles
 
 This custom element is affected by these styles
 
-| Property       |  Description                                       |
-|----------------|----------------------------------------------------|
+| Property       | Description                                        |
+| -------------- | -------------------------------------------------- |
 | `width`        | Set the size of the element                        |
 | `stroke-width` | Set the width of the trail                         |
 | `color`        | Set the color, inherit the parent color by default |
 
 ## Changelog
+
+**1.0.0**
+
+- Removed automatic definition of customElement
 
 **0.0.3**
 
