@@ -1,4 +1,6 @@
 export default class SpinningDots extends HTMLElement {
+  static get observedAttributes() { return ['dots'] }
+
   constructor() {
     super()
     this.root = this.attachShadow({ mode: 'open' })
@@ -11,9 +13,18 @@ export default class SpinningDots extends HTMLElement {
     const circles = this.intFromPx(this.getAttribute('dots'), 8)
     this.root.innerHTML = `<div>
     ${this.buildStyles(width, circles, strokeWidth)}
-    ${this.buildCircles(width, circles, strokeWidth / 2)}
+    <svg class="circles" viewBox="0 0 ${width} ${width}" fill="none" xmlns="http://www.w3.org/2000/svg">
+      ${this.buildCircles(width, circles, strokeWidth / 2)}
+    </svg>
     ${this.buildTrail(width, strokeWidth)}
     </div>`
+  }
+  attributeChangedCallback(){
+    const styles = window.getComputedStyle(this)
+    const width = this.intFromPx(styles.width, 28)
+    const circles = this.intFromPx(this.getAttribute('dots'), 8)
+    const strokeWidth = this.intFromPx(styles.strokeWidth, (4 / 28) * width, 1)
+    this.root.querySelector(".circles").innerHTML = this.buildCircles(width, circles, strokeWidth / 2)
   }
 
   disconnectedCallback() {
@@ -29,14 +40,14 @@ export default class SpinningDots extends HTMLElement {
    */
   buildCircles(w, n, r) {
     const circleRadius = w / 2 - r
-    let dom = `<svg class="circles" width="${w}" height="${w}" viewBox="0 0 ${w} ${w}" fill="none" xmlns="http://www.w3.org/2000/svg">`
+    let dom = ""
     for (let i = 0; i < n; i++) {
       const a = (Math.PI / (n / 2)) * i
       const x = circleRadius * Math.sin(a) + w / 2
       const y = circleRadius * Math.cos(a) + w / 2
       dom += `<circle cx="${x}" cy="${y}" r="${r}" fill="currentColor"/>`
     }
-    return dom + `</svg>`
+    return dom
   }
 
   /**
@@ -46,7 +57,7 @@ export default class SpinningDots extends HTMLElement {
    * @return {string}
    */
   buildTrail(w, stroke) {
-    return `<svg class="halo" width="${w}" height="${w}" viewBox="0 0 ${w} ${w}" fill="none" xmlns="http://www.w3.org/2000/svg">
+    return `<svg class="halo" viewBox="0 0 ${w} ${w}" fill="none" xmlns="http://www.w3.org/2000/svg">
 <circle cx="${w / 2}" cy="${w / 2}" r="${w / 2 -
       stroke / 2}" stroke-width="${stroke}" stroke-linecap="round" stroke="currentColor"/>
 </svg>`
@@ -64,12 +75,14 @@ export default class SpinningDots extends HTMLElement {
     return `<style>
       :host {
         display: inline-block;
+        width: ${w}px;
+        height: ${w}px;
       }
       div {
         animation: fadeIn .4s cubic-bezier(.1,.6,.3,1);
         position: relative;
-        width: ${w}px;
-        height: ${w}px;
+        width: 100%;
+        height: 100%;
       }
       svg {
         position: absolute;
