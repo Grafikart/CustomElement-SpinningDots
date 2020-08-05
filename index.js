@@ -24,7 +24,7 @@ export default class SpinningDots extends HTMLElement {
     const width = this.intFromPx(styles.width, 28)
     const circles = this.intFromPx(this.getAttribute('dots'), 8)
     const strokeWidth = this.intFromPx(styles.strokeWidth, (4 / 28) * width, 1)
-    this.root.querySelector(".circles").innerHTML = this.buildCircles(width, circles, strokeWidth / 2)
+    if(this.root.querySelector(".circles") != null) this.root.querySelector(".circles").innerHTML = this.buildCircles(width, circles, strokeWidth / 2)
   }
 
   disconnectedCallback() {
