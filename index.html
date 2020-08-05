@@ -4,7 +4,10 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Spinning Dots Loader</title>
-  <script src="index.js" type="module" defer></script>
+  <script type="module" defer>
+    import SpinningDots from "./index.js"
+    customElements.define("spinning-dots", SpinningDots)
+  </script>
   <style>
     * {
       box-sizing: border-box;
