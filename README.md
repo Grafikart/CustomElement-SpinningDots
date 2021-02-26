@@ -19,8 +19,9 @@ yarn add @grafikart/spinning-dots-element
 Then import it in your script
 
 ```js
-import SpinningDots from '@grafikart/spinning-dots-element'
-customElements.define('spinning-dots', SpinningDots)
+import SpinningDots from '@grafikart/spinning-dots-element';
+
+customElements.define('spinning-dots', SpinningDots);
 ```
 
 ### With unpkg.com
@@ -32,14 +33,14 @@ customElements.define('spinning-dots', SpinningDots)
 Then use the custom element in your html using `<spinning-dots>`.
 
 ```html
-<-- This will create a loader with a 68px width -->
+<!-- This will create a loader with a 68px width -->
 <spinning-dots></spinning-dots>
 
-<-- Everything scales according to the width -->
-<spinning-dots style="width:100px;"></spinning-dots>
+<!-- Everything scales according to the width -->
+<spinning-dots style="width: 100px;"></spinning-dots>
 
-<-- Every configuration possible -->
-<spinning-dots style="width:100px; stroke-width:20px; color: #535FF6;" dots="8"></spinning-dots>
+<!-- Every configuration possible -->
+<spinning-dots style="width: 100px; stroke-width: 20px; color: #535FF6;" dots="8"></spinning-dots>
 ```
 
 ### Attributes
