@@ -17,7 +17,7 @@
     "url": "https://github.com/Grafikart/CustomElement-SpinningDots/issues"
   },
   "homepage": "https://github.com/Grafikart/CustomElement-SpinningDots",
-  "files": ["/index.js"],
+  "files": ["/index.min.js"],
   "keywords": [],
   "author": "Jonathan Boyer <contact@grafikart.fr>",
   "license": "MIT",
