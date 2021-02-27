@@ -1,34 +1,37 @@
 export default class SpinningDots extends HTMLElement {
-  static get observedAttributes() { return ['dots'] }
+  static get observedAttributes() {
+    return ['dots'];
+  }
 
   constructor() {
-    super()
-    this.root = this.attachShadow({ mode: 'open' })
+    super();
+    this.root = this.attachShadow({ mode: 'open' });
   }
 
   connectedCallback() {
-    const styles = window.getComputedStyle(this)
-    const width = this.intFromPx(styles.width, 28)
-    const strokeWidth = this.intFromPx(styles.strokeWidth, (4 / 28) * width, 1)
-    const circles = this.intFromPx(this.getAttribute('dots'), 8)
+    const styles = window.getComputedStyle(this);
+    const width = this.intFromPx(styles.width, 28);
+    const strokeWidth = this.intFromPx(styles.strokeWidth, (4 / 28) * width, 1);
+    const circles = this.intFromPx(this.getAttribute('dots'), 8);
     this.root.innerHTML = `<div>
     ${this.buildStyles(width, circles, strokeWidth)}
     <svg class="circles" viewBox="0 0 ${width} ${width}" fill="none" xmlns="http://www.w3.org/2000/svg">
       ${this.buildCircles(width, circles, strokeWidth / 2)}
     </svg>
     ${this.buildTrail(width, strokeWidth)}
-    </div>`
+    </div>`;
   }
-  attributeChangedCallback(){
-    const styles = window.getComputedStyle(this)
-    const width = this.intFromPx(styles.width, 28)
-    const circles = this.intFromPx(this.getAttribute('dots'), 8)
-    const strokeWidth = this.intFromPx(styles.strokeWidth, (4 / 28) * width, 1)
-    if(this.root.querySelector(".circles") != null) this.root.querySelector(".circles").innerHTML = this.buildCircles(width, circles, strokeWidth / 2)
+  attributeChangedCallback() {
+    const styles = window.getComputedStyle(this);
+    const width = this.intFromPx(styles.width, 28);
+    const circles = this.intFromPx(this.getAttribute('dots'), 8);
+    const strokeWidth = this.intFromPx(styles.strokeWidth, (4 / 28) * width, 1);
+    if (this.root.querySelector('.circles') != null);
+    this.root.querySelector('.circles').innerHTML = this.buildCircles(width, circles, strokeWidth / 2);
   }
 
   disconnectedCallback() {
-    this.root.innerHTML = ''
+    this.root.innerHTML = '';
   }
 
   /**
@@ -39,15 +42,15 @@ export default class SpinningDots extends HTMLElement {
    * @return {string}
    */
   buildCircles(w, n, r) {
-    const circleRadius = w / 2 - r
-    let dom = ""
+    const circleRadius = w / 2 - r;
+    let dom = '';
     for (let i = 0; i < n; i++) {
-      const a = (Math.PI / (n / 2)) * i
-      const x = circleRadius * Math.sin(a) + w / 2
-      const y = circleRadius * Math.cos(a) + w / 2
-      dom += `<circle cx="${x}" cy="${y}" r="${r}" fill="currentColor"/>`
+      const a = (Math.PI / (n / 2)) * i;
+      const x = circleRadius * Math.sin(a) + w / 2;
+      const y = circleRadius * Math.cos(a) + w / 2;
+      dom += `<circle cx="${x}" cy="${y}" r="${r}" fill="currentColor"/>`;
     }
-    return dom
+    return dom;
   }
 
   /**
@@ -60,7 +63,7 @@ export default class SpinningDots extends HTMLElement {
     return `<svg class="halo" viewBox="0 0 ${w} ${w}" fill="none" xmlns="http://www.w3.org/2000/svg">
 <circle cx="${w / 2}" cy="${w / 2}" r="${w / 2 -
       stroke / 2}" stroke-width="${stroke}" stroke-linecap="round" stroke="currentColor"/>
-</svg>`
+</svg>`;
   }
 
   /**
@@ -71,7 +74,7 @@ export default class SpinningDots extends HTMLElement {
    * @return {string}
    */
   buildStyles(w, n, stroke) {
-    const offset = Math.PI * (w - stroke)
+    const offset = Math.PI * (w - stroke);
     return `<style>
       :host {
         display: inline-block;
@@ -117,7 +120,7 @@ export default class SpinningDots extends HTMLElement {
         from { opacity: 0; transform: scale(.1) }
         to { opacity: 1; transform: scale(1) }
       }
-    </style>`
+    </style>`;
   }
 
   /**
@@ -128,12 +131,12 @@ export default class SpinningDots extends HTMLElement {
    */
   intFromPx(value, initial, min = 0) {
     if (value === null || value === undefined) {
-      return initial
+      return initial;
     }
-    value = parseInt(value.replace('px', ''), 10)
+    value = parseInt(value.replace('px', ''), 10);
     if (value > min) {
-      return value
+      return value;
     }
-    return initial
+    return initial;
   }
 }
